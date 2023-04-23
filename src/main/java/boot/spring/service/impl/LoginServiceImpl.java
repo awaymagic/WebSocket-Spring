@@ -1,7 +1,5 @@
 package boot.spring.service.impl;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -12,36 +10,39 @@ import boot.spring.mapper.LoginMapper;
 import boot.spring.po.Staff;
 import boot.spring.service.LoginService;
 
-@Transactional(propagation=Propagation.REQUIRED,isolation=Isolation.DEFAULT,timeout=5)
+@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, timeout = 5)
 @Service("loginservice")
-public class LoginServiceImpl implements LoginService{
+public class LoginServiceImpl implements LoginService {
+
 	@Autowired
-	LoginMapper loginmapper;
-	
+	private LoginMapper loginmapper;
+
+	@Override
 	public String getpwdbyname(String name) {
-		Staff s=loginmapper.getpwdbyname(name);
-		if(s!=null)
-		return s.getPassword();
-		else
+		Staff s = loginmapper.getpwdbyname(name);
+		if (s != null) {
+			return s.getPassword();
+		}
 		return null;
 	}
-	
+
+	@Override
 	public Long getUidbyname(String name) {
-		Staff s=loginmapper.getpwdbyname(name);
-		if(s!=null)
+		Staff s = loginmapper.getpwdbyname(name);
+		if (s != null) {
 			return (long) s.getStaff_id();
-			else
-			return null;
+		}
+		return null;
 	}
-	
+
+	@Override
 	public String getnamebyid(long id) {
-		Staff s=loginmapper.getnamebyid(id);
-		if(s!=null)
+		Staff s = loginmapper.getnamebyid(id);
+		if (s != null) {
 			return s.getUsername();
-			else
-			return null;
+		}
+		return null;
 	}
-	
-	
+
 
 }

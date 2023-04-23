@@ -23,7 +23,6 @@ public class ChatController {
 
 	@Autowired
 	LoginService loginservice;
-	
 
 	@RequestMapping("/onlineusers")
 	@ResponseBody
@@ -34,12 +33,12 @@ public class ChatController {
 		Set<String> nameset = new HashSet<String>();
 		while (it.hasNext()) {
 			String entry = it.next();
-			if (!entry.equals(currentuser))
+			if (!entry.equals(currentuser)) {
 				nameset.add(entry);
+			}
 		}
 		return nameset;
 	}
-
 
 	@RequestMapping("getuid")
 	@ResponseBody
@@ -49,4 +48,5 @@ public class ChatController {
 		u.setUid(a);
 		return u;
 	}
+
 }

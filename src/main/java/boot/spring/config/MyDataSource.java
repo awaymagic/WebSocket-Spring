@@ -66,8 +66,7 @@ public class MyDataSource {
     @Bean
     public SqlSessionTemplate sqlSessionTemplate() throws Exception {
     	// 使用上面配置的Factory
-        SqlSessionTemplate template = new SqlSessionTemplate(sqlSessionFactory()); 
-        return template;
+        return new SqlSessionTemplate(sqlSessionFactory());
     }
     
     
